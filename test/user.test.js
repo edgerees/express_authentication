@@ -1,5 +1,6 @@
 var expect = require('chai').expect;
 var db = require('../models');
+
 before(function(done) {
   db.sequelize.sync({ force: true }).then(function() {
     done();
@@ -71,7 +72,7 @@ describe('User instance methods', function() {
     it('should validate a correct password', function(done) {
       db.user.findOne().then(function(user) {
         if (user.validPassword('password')) {
-          done();
+          done(user);
         } else {
           done();
         }
